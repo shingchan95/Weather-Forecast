@@ -26,28 +26,68 @@ var cityName;
 
 var ul = document.getElementById('searchList');
 var listItems = ul.getElementsByTagName('li');
+var searchList = document.querySelectorAll("#searchList li")
+
+
+//var sN = localStorage.length;
+//var i=0;
+
+function cityHistory() {
+
+    var hy1 = document.getElementById("hy1")
+    var hy2 = document.getElementById("hy2")
+    var hy3 = document.getElementById("hy3")
+    var hy4 = document.getElementById("hy4")
+    var hy5 = document.getElementById("hy5")
+
+    latestKey= localStorage.length;
+
+    hy1.textContent= JSON.parse(localStorage.getItem(localStorage.key(latestKey-1)))  
+    hy2.textContent= JSON.parse(localStorage.getItem(localStorage.key(latestKey-2)))  
+    hy3.textContent= JSON.parse(localStorage.getItem(localStorage.key(latestKey-3)))  
+    hy4.textContent= JSON.parse(localStorage.getItem(localStorage.key(latestKey-4)))  
+    hy5.textContent= JSON.parse(localStorage.getItem(localStorage.key(latestKey-5)))  
+
+    console.log(hy1.textContent.length)
+
+    if(hy1.textContent.length>0){
+    hy1.classList.add("list-group-item")
+    }
+    if(hy2.textContent.length>0){
+    hy2.classList.add("list-group-item")
+    }
+    if(hy3.textContent.length>0){
+    hy3.classList.add("list-group-item")
+    }
+    if(hy4.textContent.length>0){
+    hy4.classList.add("list-group-item")
+    }
+    if(hy5.textContent.length>0){
+    hy5.classList.add("list-group-item")
+    }
+   /* while(i<sN){
+        
+        record =  JSON.parse(localStorage.getItem(localStorage.key(i)))  
+        recordList = document.createElement("li")
+        recordList.textContent= record
+        recordList.classList.add("list-group-item")
+        ul.appendChild(recordList)
+        i++
+        
+    }*/
+}
 
 
 cityHistory()
 
-function cityHistory(){
-
-
-    
-    for (i=0; i<9; i++){
-        historyRecord= localStorage.key(i)
-        listItems[i].textContent=JSON.parse(localStorage.getItem(historyRecord))
+for (i=0; i<searchList.length;i++){
+     
+    searchList[i].onclick= function(){
+        document.getElementById("searchIn").value = this.innerHTML;
+        searchButton.click();
     }
-        li3 = listItems[3].textContent
-        console.log(li3)
-
-
-  
-
 
 }
-
-
 
 searchInput.addEventListener("keyup", function(event) {
     if (event.keyCode === 13) {
@@ -59,7 +99,7 @@ searchInput.addEventListener("keyup", function(event) {
 
 searchButton.addEventListener("click", function(){
     
-    
+
     var api="http://api.openweathermap.org/geo/1.0/direct?q="   
     var city = searchInput.value;
     var key= "&appid=137f617b3a8be25de11fcd61cb376091";        
@@ -69,8 +109,7 @@ searchButton.addEventListener("click", function(){
         method: 'GET',
         redirect: 'follow'
     };
-
-
+    
     
     fetch(latlonURL, requestOptions)
     .then(function(response) {
@@ -242,7 +281,8 @@ searchButton.addEventListener("click", function(){
                 d4H.textContent="Humidity Forecast: "+ dayHumid4+"%"
                 d5H.textContent="Humidity Forecast: "+ dayHumid5+"%"
                 
-                
+               
+                cityHistory()
             });
         });
     });
@@ -251,15 +291,12 @@ searchButton.addEventListener("click", function(){
 
 
     
-    var searchList = document.querySelectorAll("#searchList li")
-    for (i=0; i<searchList.length;i++){
-        searchList[i].onclick= function(){
-            document.getElementById("searchIn").value = this.innerHTML;
-            searchButton.click();
-        }
+   
+   
 
-    }
+  
     
+
     
   
 
