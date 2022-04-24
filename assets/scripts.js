@@ -20,6 +20,41 @@ var src2= document.getElementById("imageIcon2")
 var src3= document.getElementById("imageIcon3")
 var src4= document.getElementById("imageIcon4")
 var src5= document.getElementById("imageIcon5")
+var cityName;
+
+
+
+var ul = document.getElementById('searchList');
+var listItems = ul.getElementsByTagName('li');
+
+
+cityHistory()
+
+function cityHistory(){
+
+
+    
+    for (i=0; i<9; i++){
+        historyRecord= localStorage.key(i)
+        listItems[i].textContent=JSON.parse(localStorage.getItem(historyRecord))
+    }
+        li3 = listItems[3].textContent
+        console.log(li3)
+
+
+  
+
+
+}
+
+
+
+searchInput.addEventListener("keyup", function(event) {
+    if (event.keyCode === 13) {
+      event.preventDefault();
+      searchButton.click();
+    }
+  });
 
 
 searchButton.addEventListener("click", function(){
@@ -34,6 +69,7 @@ searchButton.addEventListener("click", function(){
         method: 'GET',
         redirect: 'follow'
     };
+
 
     
     fetch(latlonURL, requestOptions)
@@ -53,12 +89,12 @@ searchButton.addEventListener("click", function(){
         var cityLon= coorResult[0].lon
         var units = "metric"
         var part= "hourly,minutely,alerts"
+        cityName= coorResult[0].name
 
+             
         var weatherURL = weatherAPI+ "lat="+cityLat+"&lon="+cityLon+"&units="+units+"&exclude="+part+key
         curCity= document.getElementById("curCity")
         curCity.textContent=("Today in "+coorResult[0].name)
-
-
 
 
 
@@ -74,6 +110,14 @@ searchButton.addEventListener("click", function(){
             })
             .then(function(data){
 
+
+            
+
+
+               
+                    localStorage.setItem("cityName:"+cityName,JSON.stringify(cityName))       
+                
+
                 
                 displaySwitch.classList.remove("d-none")
 
@@ -85,14 +129,7 @@ searchButton.addEventListener("click", function(){
                 d4IData= "http://openweathermap.org/img/wn/"+data.daily[4].weather[0].icon +"@2x.png"
                 d5IData= "http://openweathermap.org/img/wn/"+data.daily[5].weather[0].icon +"@2x.png"
 
-                console.log(d1IData)
             
-
-     
-                //d2I= "http://openweathermap.org/img/wn/"+dayIcon1
-                //d3I= "http://openweathermap.org/img/wn/"+dayIcon2
-                //d4I= "http://openweathermap.org/img/wn/"+dayIcon3
-                //d5I= "http://openweathermap.org/img/wn/"+dayIcon4
  
                 img.src= curimgData 
                 img1.src= d1IData
@@ -107,14 +144,12 @@ searchButton.addEventListener("click", function(){
                 src3.appendChild(img3)
                 src4.appendChild(img4)
                 src5.appendChild(img5)
+  
                 
 
-                
-                
-             
-               
-                
-                src.appendChild(img)
+
+
+
 
 
                 var curUv= document.getElementById("curUv");
@@ -130,11 +165,11 @@ searchButton.addEventListener("click", function(){
                 var T4=moment().add(4,'day').format("L");
                 var T5=moment().add(5,'day').format("L");
 
-                $(d1D).text(T1)
-                $(d2D).text(T2)
-                $(d3D).text(T3)
-                $(d4D).text(T1)
-                $(d5D).text(T1)
+                $(d1D).text(T1+" in "+ cityName)
+                $(d2D).text(T2+" in "+ cityName)
+                $(d3D).text(T3+" in "+ cityName)
+                $(d4D).text(T4+" in "+ cityName)
+                $(d5D).text(T5+" in "+ cityName)
 
 
 
@@ -211,6 +246,19 @@ searchButton.addEventListener("click", function(){
             });
         });
     });
+
+    
+
+
+    
+    var searchList = document.querySelectorAll("#searchList li")
+    for (i=0; i<searchList.length;i++){
+        searchList[i].onclick= function(){
+            document.getElementById("searchIn").value = this.innerHTML;
+            searchButton.click();
+        }
+
+    }
     
     
   
