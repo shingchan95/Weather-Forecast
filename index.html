@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link
+    rel="stylesheet"
+    href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    />
+    <link rel="stylesheet" href="./assets/style.css" />
+    
+
+    <title>Weather forecast</title>
+</head>
+
+<body>
+    <header class="jumbotron jumbotron-fluid text-center font-family-lucida-console"><h1>Weather forecast</h1></header>
+    <aside  class = "float-left container" id="borda">
+        <div class="input-group boarder container col-12 mt-4">
+            <input type="text" class="form-control" id="searchIn" placeholder="Search for a city" >
+  
+            <button class="btn btn-outline-secondary " type="button" id="searchBut">search</button>
+            
+            
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">Cras justo odio</li>
+                <li class="list-group-item">Dapibus ac facilisis in</li>
+                <li class="list-group-item">Morbi leo risus</li>
+                <li class="list-group-item">Porta ac consectetur ac</li>
+                <li class="list-group-item">Vestibulum at eros</li>
+                <li class="list-group-item">Porta ac consectetur ac</li>
+                <li class="list-group-item">Vestibulum at eros</li>
+                <li class="list-group-item">Porta ac consectetur ac</li>
+                <li class="list-group-item">Vestibulum at eros</li>
+                <li class="list-group-item">Vestibulum at eros</li>
+              </ul>  
+            
+        </div>
+    </aside>
+    <main>    
+        <section class="row justify-content-around d-none" id="displaySwitch">
+            <div class="col-2">
+                <div class="card">
+                <h5 class="card-header" id="curCity"></h5>
+                <div id="imageIcon0"></div> 
+                <div class="card-body">
+                    <div id="curuvBar">""</div>
+                    <p class="card-text" id="curUv"></p>
+                    <p class="card-text" id="curTemp"></p>
+                    <p class="card-text" id="curHumid"></p>
+                    <p class="card-text" id="curWspd"></p>
+                    <p class="card-text textSize" id="curDate"></p>
+                </div>
+                </div>
+            </div>
+
+            <div class="col-2">
+                <div class="card">
+                <h5 class="card-header" id="d1D">Tomorrow</h5>
+                <div id="imageIcon1"></div>           
+                <div class="card-body" id="day1">
+                    <p class="card-text" id="d1T"></p>
+                    <p class="card-text" id="d1W"></p>
+                    <p class="card-text" id="d1H"></p>
+                    
+                </div>
+                </div>
+            </div>
+            
+            <div class="col-2">
+                <div class="card">
+                <h5 class="card-header" id="d2D">d2</h5>
+                <div id="imageIcon2"></div>           
+                <div class="card-body" id="day2">
+                    <p class="card-text" id="d2T"></p>
+                    <p class="card-text" id="d2W"></p>
+                    <p class="card-text" id="d2H"></p>
+
+                    
+                </div>
+                </div>
+            </div>
+
+            <div class="col-2">
+                <div class="card">
+                <h5 class="card-header" id="d3D">d3</h5>
+                <div id="imageIcon3"></div>           
+                <div class="card-body" id="day3">
+                    <p class="card-text" id="d3T"></p>
+                    <p class="card-text" id="d3W"></p>
+                    <p class="card-text" id="d3H"></p>
+    
+                    
+                </div>
+                </div>
+            </div>
+
+            <div class="col-2">
+                <div class="card">
+                <h5 class="card-header" id="d4D">d4</h5>
+                <div id="imageIcon4"></div>           
+                <div class="card-body" id="day4">
+                    <p class="card-text" id="d4T"></p>
+                    <p class="card-text" id="d4W"></p>
+                    <p class="card-text" id="d4H"></p>
+ 
+                    
+                </div>
+                </div>
+            </div>
+            <div class="col-2">
+                <div class="card">
+                <h5 class="card-header" id="d5D">d5</h5>
+                <div id="imageIcon5"></div>           
+                <div class="card-body" id="day5">
+                    <p class="card-text" id="d5T"></p>
+                    <p class="card-text" id="d5W"></p>
+                    <p class="card-text" id="d5H"></p>
+           
+                    
+                </div>
+                </div>
+            </div>
+            </section>
+
+    </main>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+    <script src="./assets/scripts.js"></script>
+</body>
+</html>
+
