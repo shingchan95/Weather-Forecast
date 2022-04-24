@@ -30,7 +30,6 @@ var searchList = document.querySelectorAll("#searchList li")
 
 
 //var sN = localStorage.length;
-//var i=0;
 
 function cityHistory() {
 
@@ -48,7 +47,8 @@ function cityHistory() {
     hy4.textContent= JSON.parse(localStorage.getItem(localStorage.key(latestKey-4)))  
     hy5.textContent= JSON.parse(localStorage.getItem(localStorage.key(latestKey-5)))  
 
-    console.log(hy1.textContent.length)
+    console.log(localStorage.length)
+    console.log(localStorage.getItem(localStorage.key(latestKey-2)))
 
     if(hy1.textContent.length>0){
     hy1.classList.add("list-group-item")
@@ -99,6 +99,7 @@ searchInput.addEventListener("keyup", function(event) {
 
 searchButton.addEventListener("click", function(){
     
+    
 
     var api="http://api.openweathermap.org/geo/1.0/direct?q="   
     var city = searchInput.value;
@@ -148,16 +149,10 @@ searchButton.addEventListener("click", function(){
                 }
             })
             .then(function(data){
-
-
+         
+                localStorage.setItem("cityName:"+cityName,JSON.stringify(cityName))       
             
-
-
-               
-                    localStorage.setItem("cityName:"+cityName,JSON.stringify(cityName))       
-                
-
-                
+            
                 displaySwitch.classList.remove("d-none")
 
               
@@ -222,17 +217,17 @@ searchButton.addEventListener("click", function(){
                 if(data.current.uvi<=2){
                     curuvBar.style.backgroundColor= "green"
                     curuvBar.textContent="favorable"
-
-                    if(data.current.uvi>=8){
+                }
+                    if(data.current.uvi>8){
                     curuvBar.style.backgroundColor= "red"
                     curuvBar.textContent="severe"                        
                     }
+                    else{
+                        curuvBar.style.backgroundColor="yellow"
+                        curuvBar.textContent="moderate"
+                    }
 
-                } else{
-                    curuvBar.style.backgroundColor="yellow"
-                    curuvBar.textContent="moderate"
-                }
-                console.log(data)
+                    console.log(data)
 
                 curimgData = "http://openweathermap.org/img/wn/"+data.current.weather[0].icon +"@2x.png"
                 
