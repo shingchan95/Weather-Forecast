@@ -28,55 +28,52 @@ var ul = document.getElementById('searchList');
 var listItems = ul.getElementsByTagName('li');
 var searchList = document.querySelectorAll("#searchList li")
 
+var cityValue = [];
 
 //var sN = localStorage.length;
 
 function cityHistory() {
 
-    var hy1 = document.getElementById("hy1")
-    var hy2 = document.getElementById("hy2")
-    var hy3 = document.getElementById("hy3")
-    var hy4 = document.getElementById("hy4")
-    var hy5 = document.getElementById("hy5")
+    var cityStorage=JSON.parse(localStorage.getItem("cityN"))
 
-    latestKey= localStorage.length;
+     if(window.localStorage.length ==0){
+         return
+     }
+     else{
+        var cL= cityStorage.length-1
+        var check1=document.getElementById("check1") 
+        var check2=document.getElementById("check2") 
+        var check3=document.getElementById("check3") 
+        var check4=document.getElementById("check4") 
+        var check5=document.getElementById("check5") 
+     
 
-    hy1.textContent= JSON.parse(localStorage.getItem(localStorage.key(latestKey-1)))  
-    hy2.textContent= JSON.parse(localStorage.getItem(localStorage.key(latestKey-2)))  
-    hy3.textContent= JSON.parse(localStorage.getItem(localStorage.key(latestKey-3)))  
-    hy4.textContent= JSON.parse(localStorage.getItem(localStorage.key(latestKey-4)))  
-    hy5.textContent= JSON.parse(localStorage.getItem(localStorage.key(latestKey-5)))  
+        check1.textContent= cityStorage[cL]  
+        check2.textContent= cityStorage[cL-1]  
+        check3.textContent= cityStorage[cL-2]  
+        check4.textContent= cityStorage[cL-3]  
+        check5.textContent= cityStorage[cL-4]  
+  
 
-    console.log(localStorage.length)
-    console.log(localStorage.getItem(localStorage.key(latestKey-2)))
-
-    if(hy1.textContent.length>0){
-    hy1.classList.add("list-group-item")
-    }
-    if(hy2.textContent.length>0){
-    hy2.classList.add("list-group-item")
-    }
-    if(hy3.textContent.length>0){
-    hy3.classList.add("list-group-item")
-    }
-    if(hy4.textContent.length>0){
-    hy4.classList.add("list-group-item")
-    }
-    if(hy5.textContent.length>0){
-    hy5.classList.add("list-group-item")
-    }
-   /* while(i<sN){
         
-        record =  JSON.parse(localStorage.getItem(localStorage.key(i)))  
-        recordList = document.createElement("li")
-        recordList.textContent= record
-        recordList.classList.add("list-group-item")
-        ul.appendChild(recordList)
-        i++
-        
-    }*/
+        if(check2.textContent!==""){    
+            check2.classList.add("list-group-item")   
+        }
+        if(check3.innerHTML!==""){
+            check3.classList.add("list-group-item")   
+        }
+        if(check4.innerHTML!==""){
+            check4.classList.add("list-group-item")   
+        }
+        if(check5.innerHTML!==""){
+            check5.classList.add("list-group-item")   
+        }
+        if(check1.innerHTML!==""){
+            check1.classList.add("list-group-item")   
+        }  
+    }
+
 }
-
 
 cityHistory()
 
@@ -91,7 +88,7 @@ for (i=0; i<searchList.length;i++){
 
 searchInput.addEventListener("keyup", function(event) {
     if (event.keyCode === 13) {
-      event.preventDefault();
+
       searchButton.click();
     }
   });
@@ -149,8 +146,9 @@ searchButton.addEventListener("click", function(){
                 }
             })
             .then(function(data){
-         
-                localStorage.setItem("cityName:"+cityName,JSON.stringify(cityName))       
+
+                cityValue.push(cityName)        
+                localStorage.setItem("cityN",JSON.stringify(cityValue))       
             
             
                 displaySwitch.classList.remove("d-none")
@@ -218,17 +216,17 @@ searchButton.addEventListener("click", function(){
                     curuvBar.style.backgroundColor= "green"
                     curuvBar.textContent="favorable"
                 }
-                    if(data.current.uvi>8){
-                    curuvBar.style.backgroundColor= "red"
-                    curuvBar.textContent="severe"                        
-                    }
-                    else{
-                        curuvBar.style.backgroundColor="yellow"
-                        curuvBar.textContent="moderate"
-                    }
+                else if(data.current.uvi>=8){
+                curuvBar.style.backgroundColor= "red"
+                curuvBar.textContent="severe"                        
+                }
 
-                    console.log(data)
+                else{
+                    curuvBar.style.backgroundColor="yellow"
+                    curuvBar.textContent="moderate"
+                }
 
+         
                 curimgData = "http://openweathermap.org/img/wn/"+data.current.weather[0].icon +"@2x.png"
                 
                 var d1T= document.getElementById("d1T");

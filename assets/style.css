@@ -1,6 +1,6 @@
 #borda{
     width:300px;
-    height: 700px;
+    height: 500px;
     border-style: solid;
     margin: 0px 65px 0px;
 }
@@ -15,7 +15,7 @@ ul{
 #mainBorda{
   border-style: solid;
   width:1400px;
-  height: 700px;
+  height: 500px;
   padding:0px 0px 0px
 }
 
