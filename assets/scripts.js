@@ -98,7 +98,7 @@ searchButton.addEventListener("click", function(){
     
     
 
-    var api="http://api.openweathermap.org/geo/1.0/direct?q="   
+    var api="https://api.openweathermap.org/geo/1.0/direct?q="   
     var city = searchInput.value;
     var key= "&appid=137f617b3a8be25de11fcd61cb376091";        
     var latlonURL= api+city+key;
@@ -121,7 +121,7 @@ searchButton.addEventListener("click", function(){
     })
     .then(function(coorResult){
         
-        var weatherAPI="http://api.openweathermap.org/data/2.5/onecall?"
+        var weatherAPI="https://api.openweathermap.org/data/2.5/onecall?"
         var cityLat= coorResult[0].lat
         var cityLon= coorResult[0].lon
         var units = "metric"
