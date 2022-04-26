@@ -121,7 +121,7 @@ searchButton.addEventListener("click", function(){
     })
     .then(function(coorResult){
         
-        var weatherAPI="https://api.openweathermap.org/data/2.5/onecall?"
+        var weatherAPI="http://api.openweathermap.org/data/2.5/onecall?"
         var cityLat= coorResult[0].lat
         var cityLon= coorResult[0].lon
         var units = "metric"
