@@ -154,12 +154,12 @@ searchButton.addEventListener("click", function(){
                 displaySwitch.classList.remove("d-none")
 
               
-                curimgData= "http://openweathermap.org/img/wn/"+data.current.weather[0].icon +"@2x.png"
-                d1IData= "http://openweathermap.org/img/wn/"+data.daily[1].weather[0].icon +"@2x.png"
-                d2IData= "http://openweathermap.org/img/wn/"+data.daily[2].weather[0].icon +"@2x.png"
-                d3IData= "http://openweathermap.org/img/wn/"+data.daily[3].weather[0].icon +"@2x.png"
-                d4IData= "http://openweathermap.org/img/wn/"+data.daily[4].weather[0].icon +"@2x.png"
-                d5IData= "http://openweathermap.org/img/wn/"+data.daily[5].weather[0].icon +"@2x.png"
+                curimgData= "https://openweathermap.org/img/wn/"+data.current.weather[0].icon +"@2x.png"
+                d1IData= "https://openweathermap.org/img/wn/"+data.daily[1].weather[0].icon +"@2x.png"
+                d2IData= "https://openweathermap.org/img/wn/"+data.daily[2].weather[0].icon +"@2x.png"
+                d3IData= "https://openweathermap.org/img/wn/"+data.daily[3].weather[0].icon +"@2x.png"
+                d4IData= "https://openweathermap.org/img/wn/"+data.daily[4].weather[0].icon +"@2x.png"
+                d5IData= "https://openweathermap.org/img/wn/"+data.daily[5].weather[0].icon +"@2x.png"
 
             
  
@@ -227,7 +227,7 @@ searchButton.addEventListener("click", function(){
                 }
 
          
-                curimgData = "http://openweathermap.org/img/wn/"+data.current.weather[0].icon +"@2x.png"
+                curimgData = "https://openweathermap.org/img/wn/"+data.current.weather[0].icon +"@2x.png"
                 
                 var d1T= document.getElementById("d1T");
                 var d1W= document.getElementById("d1W");
